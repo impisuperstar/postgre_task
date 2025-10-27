@@ -3,12 +3,10 @@ CREATE TABLE Genres (
     name VARCHAR(100) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE Artists (
     artist_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
-
 
 CREATE TABLE ArtistsGenres (
     artist_id INTEGER REFERENCES Artists(artist_id) ON DELETE CASCADE,
@@ -41,7 +39,9 @@ CREATE TABLE Collections (
     collection_id SERIAL PRIMARY KEY,
     year INTEGER NOT NULL CHECK (year >= 1900),
     title VARCHAR(255) NOT NULL
-);  CREATE TABLE TracksCollections (
+);  
+
+CREATE TABLE TracksCollections (
     track_id INTEGER REFERENCES Tracks(track_id) ON DELETE CASCADE,
     collection_id INTEGER REFERENCES Collections(collection_id) ON DELETE CASCADE,
     PRIMARY KEY (track_id, collection_id)
